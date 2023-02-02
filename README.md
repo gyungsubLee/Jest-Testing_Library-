@@ -1,4 +1,4 @@
-# Testing_Library-Jest
+# Testing Library/Jest
 [유데미- Jest 및 Testing Library](https://www.udemy.com/course/jest-testing-library/)
 
 [강의 코드](https://github.com/bonnie/udemy-TESTING-LIBRARY)
@@ -7,6 +7,8 @@
 
 
 <br/>
+<br/>
+
  
 > ## 학습 목표
 > 1. 버튼이나 체크 박스 클릭과 같은 DOM에 영향을 주는 이벤트를 테스트 코드로 작성
@@ -18,12 +20,22 @@
 
 
 <br/>
+<br/>
+
 
 > ## 🧐 의문점 및 추가 정리 필요한 부분
+> ∙ [Mock]() - 미작성<br/>
+> ∙ [상호작용(이벤트) 테스트하기]() - 미작성<br/>
+>
+> ∙ [Test 정리, 작성 및 실행](./Notes/Test(23.02.02)t.md) - 작성 중<br/>
 > ∙ [Test Driven Development](./Notes/TDD.md) - 작성 중 <br/>
-> ∙ [Query - 타겟 유형 추가 정리 필요](./Notes/Query(ß3.01.27).md)<br/>
-> ∙ ['함수 유닛 테스트 활용'의 case 추가 정리 필요, 'case2-기능 테스트 디버깅 활용' 이해 안됨.](./Notes/FnUnitTest(23.01.29).md)<br/>
-> 
+> ∙ [Query - 타겟 유형 추가 정리 필요](./Notes/Query(ß3.01.27).md) - 작성 중<br/>
+> ∙ [Formating, Linting]() - 작성중<br/>
+>
+> ∙ ['함수 유닛 테스트 활용'의 case 추가 정리 필요, 'case2-기능 테스트 디버깅 활용' 이해 안됨.](./Notes/FnUnitTest(23.01.29).md) - 추가 정리 필요<br/>
+
+> ∙ []()<br/>
+
 
 
 <br/>
@@ -31,12 +43,20 @@
 
 ## Notes
 
+ 
 
 |제목|내용|
 |------|---|
+|[TDD](./Notes/TDD.md)| |ß
+|[Test](./Notes/Test(23.02.02)t.md)| |
+|[Evnet Test](./Notes/%EC%9D%B4%EB%B2%A4%ED%8A%B8%ED%85%8C%EC%8A%A4%ED%8A%B8(23.01.31).md)| |
 |[Query](./Notes/Query(23.01.27).md)|쿼리 타입, 타겟 개수, 타겟 유형|
-|[함수 유닛 테스트](./Notes/FnUnitTest(23.01.29).md)|강의 예시, 함수 유닛 테스트 활용법|
-|테스트1|테스트2|
+|[Unit Test](./Notes/UnitTest(23.02.02).md)|유닛 테스트, 함수 유닛 테스트(강의), 함수 유닛 테스트 활용법|
+|[Formater, Linter](/Notes/Formating(23.01.30).md)| | 
+|[Mock](./Notes/Mock.md)||
+
+> |[]()| |
+
 
 
 <br/>
@@ -68,147 +88,6 @@ RTL에 Jest가 포함됨.
 
 
 <br/>
-<br/>
-<br/>
-
-
-
-
-## 테스트 코드 작성 및 실행
-
-
-### 테스트 코드 작성
-
-
-테스트는 보통 아래과 같은 패턴을 이룬다.
-
-> `컴포넌트를 띄우고` → `특정 액션 발생` → `결과 확인` 
-
-
-
-```javascript
-// Test Code 예시1
-import { render, screen } from '@testing-library/react';
-import App from './App';
-
-
-test('renders learn react link'. ()=>{
-    render(<App>);
-    const linkElememt = screen.getByText(/learn react/i);
-    expect(linkElement).toBeTheDocument();  
-});
-```
-
-<br/>
-
-```javascript
-// Test Code 예시2
-import { render } from '@testing-library/react';
-import Counter from './Counter';
-
-
-describe('Counter test', () => {
-  it('should render Counter', () => {
-    render(<Counter />);
-  });
-}); 
-```
-
-<br/>
-
-
->#### ● render
->JSX를 인자로 받아 해당하는 가상 DOM 생성
->(`screen` 전역 객체로 가상 돔에 접근)
->
->#### ● screen.getByText()
->screen 객체의 getByText 메서드를 통해 
->
->#### ● describe
->같은 맥락의 test 그룹화함.
->
->#### ● it 
-> 개별 테스트 수행 (test 메서드와 동일)
->
-> #### ● describe 문
->테스트를 그룹으로 묶어 한번에 처리
->
-> #### ● Jest-toBe()
-> Jest의 기본 매처(Matcher) 함수로 두 값을 직접 비교함
->
-
-<br/>
-<br/>
-
-
-### 테스트 코드 실행
-
-작성한 테스트 코드는 test runner를 통해 실행된다.
-
-`[suffix].test.js` 에서 해당하는 `접미사(suffix)`를 가진 파일을 `test runner` 자동으로 탐색하여 test를 진행한다.
-
-
-<br/>
-<br/>
-
-
-
-
-
-<br/>
-<br/>
-
-
-## Behavior Driven Test(행위 주도 테스트)
-React Testing Library는 ```Behavior Driven Test(행위 주도 테스트)``` 방법론이  대두 되면서 함께 주목 받기 시작한 테스팅 라이브러리 이다. 
-
-```Behavior Driven Test(행위 주도 테스트)```는 기존에 관행이던 ```Implementation Driven Test(구현 주도 테스트)```의 단점을 보완하기 위한 방법론으로, 
-기존의 ```Implementation Driven Test(구현 주도 테스트)```에서의 애플리케이션이 어떻게 작동하는지에 대한 테스트가 아닌, 
-사용자가 에플리케이션을 이용하는 관점에서 ```실제 사용자 경험```을 위주로 테스트를 작성핟다.
-
-<br/>
-
-```html
-<h2 class="title">제목</h2>
-```
-
-
-예를 들어, 위와 같은 UI를 테스트한다고 가장할 떄,
-
-```Implementation Driven Test(구현 주도 테스트)```는  ```<h2>```라는 태그 와 ```title```이라는 클래스가 사용 되었는지 여부를 테스트한다.
-
-반면, ```Behavior Driven Test(행위 주도 테스트)```에서는 ```사용자에게 어떤 컨텐츠가 보```이는지, ``사용자가 어떤 이벤트를 발생``시켰을 때, 그에 따른 올바른 ```상호작용이 발생```되는지를 테스트한다.
-
-<br/>
-
-또한 예시의 ```<h2>``` 태그를 ```<h3>```로 변경 시, 
-
-```Implementation Driven Test(구현 주도 테스트)```는 작성된 테스트가 문제가 되지만,
-
-```Behavior Driven Test(행위 주도 테스트)```는 문제가 되지 않는다.
-
-왜냐하면 애플리케이션 입장에서는 구현 디테일이 바뀐 것 이지만, 사용자 입장에서는 ```제목```이라는 텍스트가 화면에 있다는 사실은 변함이 없기 떄문이다.
-
-
-
-
-<br/><br/>
-
-
-## Mock 이란?
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br/>
 
 

@@ -1,2 +1,12 @@
-.gitmessage.txt
 .git
+.gitignore
+ .vscode
+.node-modules
+.gitmessage.txt
+
+my-app/node-modules
+my-app/.eslintrc.js
+
+pro-icecreamApp/node_modules
+pro-icecreamApp/.vscode
+pro-icecreamApp/.eslintrc.js

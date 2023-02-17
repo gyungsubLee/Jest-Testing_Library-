@@ -52,7 +52,7 @@
 |[Evnet Test](./Notes/%EC%9D%B4%EB%B2%A4%ED%8A%B8%ED%85%8C%EC%8A%A4%ED%8A%B8(23.01.31).md)| |
 |[Query](./Notes/Query(23.01.27).md)|쿼리 타입, 타겟 개수, 타겟 유형|
 |[Unit Test](./Notes/UnitTest(23.02.02).md)|유닛 테스트, 함수 유닛 테스트(강의), 함수 유닛 테스트 활용법|
-|[Formater, Linter](/Notes/Formating(23.01.30).md)| | 
+|[ESLint, Prettier](/Notes/Formating(23.01.30).md)| ESLint, Prettier| 
 |[Mock](./Notes/Mock.md)||
 
 > |[]()| |

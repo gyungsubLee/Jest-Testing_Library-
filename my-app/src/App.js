@@ -5,7 +5,7 @@ export function replaceCamelWithSpaces(colorName) {
   return colorName.replace(/\B([A-Z])\B/g, " $1");
 }
 
-export function App() {
+function App() {
   const [ buttonColor, setButtonColor ] = useState('MediumVioletRed');
   const [ disaled, setDisabled ] = useState(false);
 
@@ -27,4 +27,7 @@ export function App() {
       <label htmlFor='disable-button-checkbox'>Disable button</label>
     </div>
   );
-}
+};
+
+
+export default App;

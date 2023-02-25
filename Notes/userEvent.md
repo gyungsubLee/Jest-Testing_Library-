@@ -20,9 +20,9 @@ userEvent는 Testing Library의 companion library로 사용자의 상호 작용�
 
 `fireEvent`와 `userEvent` 둘다 이벤트를 발생시키는 함수지만
 
-`userEvent`는 마치 사라미 직접 브라우저 상에서 행동하는 것처럼 유저 이벤트를 발생시켜 유지가 특정 event 실행 시 발생 가능한 모든 이벤트를 시뮬레이션 가능하게 한다. (fireEvent는 명시한 특정 이벤트 하나만 발생시킨다.)
+`userEvent`는 마치 사람이 직접 브라우저 상에서 행동하는 것처럼 유저 이벤트를 발생시켜 유지가 특정 event 실행 시 발생 가능한 모든 이벤트를 시뮬레이션 가능하게 한다. (fireEvent는 명시한 특정 이벤트 하나만 발생시킨다.)
 
-따라서 userEvent를 사용하는 것이 더 실제 환경과 가깝게 테스트를 할 수 있다. 더 적합한 방법이다.
+따라서 userEvent를 사용하는 것이 더 실제 환경과 가깝게 테스트를 할 수 있기 떄문에 event를 test하기에 더 적합한 방법이다.
 
 <br/>
 <br/>
@@ -97,7 +97,7 @@ await user.click(checkbox);
 
 ## 정리)
 
-event를 test하는데 있어 fireEvent보다 더 적합한 방법이다.<br/>
+`userEvent`는 event를 test하는데 있어 fireEvent보다 더 적합한 방법이다.<br/>
 `setup()`를 사용하여 initaiiz한다.<br/>
 `프로미스 객체`를 반환하기 때문에 `async`, `await` 사용이 필수이다.
 

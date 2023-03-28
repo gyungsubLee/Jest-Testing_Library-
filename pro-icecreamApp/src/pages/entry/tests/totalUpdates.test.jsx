@@ -22,11 +22,11 @@ test("Update scoop subtotal when scoops change", async () => {
 
   // update chocolate scoops to 2, and check subtotal
 
-  const chocolateInput = await.findByRole("spinButton", {
+  const chocolateInput = await findByRole("spinButton", {
     name: "Chocolate",
   });
 
   await user.clear(chocolateInput);
-  await user.type(chocolateInput, "2")
+  await user.type(chocolateInput, "2");
   expect(scoopsSubtotal, tothaveTextContent("6.00"));
 });

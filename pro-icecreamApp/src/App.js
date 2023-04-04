@@ -1,11 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import {useSate} from "react";
-import Options from './pages/entry/Options';
+import Container from "react-bootstrap/Container";
+import OrderEntry from "./pages/entry/OrderEntry";
+import { OrderDetailsProvider } from "./contexts/OrderDetails";
 
 function App() {
   return (
-    <Options/>
+    <>
+      <OrderDetailsProvider>
+        {/* Summary page and entry page need provider */}
+        <OrderEntry />
+      </OrderDetailsProvider>
+      {/* confirmation page does not need provider */}
+    </>
   );
 }
 

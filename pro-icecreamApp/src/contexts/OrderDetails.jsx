@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { pricePerItem } from "../constants/constants";
+import { pricePerItem } from "../constants";
 
 const OrderDetails = createContext();
 
-export function useOrderDetails() {
-  const contextValue = useContext(orderDetails);
+export function userOrderDetails() {
+  const contextValue = useContext(OrderDetails);
 
   if (!contextValue) {
     throw new Error(
@@ -17,39 +17,48 @@ export function useOrderDetails() {
 
 export function OrderDetailsProvider(props) {
   const [optionCounts, setOptionCounts] = useState({
-    scoops: {},
-    toppings: {},
+    scoops: {}, // example: { "Chocolate": 1, "Vanilla": 2}
+    toopiings: {}, // example: { "Gummi Bears": 1}
   });
 
+  function updateItemCount(itemName, newItemCount, optionType) {
+    // make a copy of existing state
+    const newOptionCounts = { ...optionCounts };
+
+    // update the copy with the new information
+    newOptionCounts[optionType][itemName] = newItemCount;
+
+    // update the state with the updated copy
+    setOptionCounts(newOptionCounts);
+  }
+
+  // setOptionCounts((previousOptionCounts) => {
+  //   ...previousOptionCounts,
+  //   [optionType]: {
+  //      ...previousOptionCounts[optionType],
+  //     [itemName]: newItemNames},
+  //   };
+  // });
+
   function resetOrder() {
-    setOptionCounts({
-      scoops: {},
-      toppings: {},
-    });
+    setOptionCounts({ scoops: {}, toopiings: {} });
   }
 
-  function updateOptionCounts({ itemName, newItemCount, optionType }) {
-    setOptionCounts((previousOptionCounts) => ({
-      ...previousOptionCounts,
-      [optionType]: {
-        ...previousOptionCounts[optionType],
-        [itemName]: newItemCount,
-      },
-    }));
-  }
+  // utility function to derive totals from optionCounts state value
+  function calculateTotal(optionType) {
+    // get an array of counts for the option type (for example, [1, 2])
+    const countsArray = Object.values(optionCounts[optionType]);
 
-  function calculate(optionType) {
-    const countsArray = Object.keys(optionCounts[optionType]); // example) [1, 2]
     const totalCount = countsArray.reduce((total, value) => total + value, 0);
+
     return totalCount * pricePerItem[optionType];
   }
 
   const totals = {
-    scoops: calculate("scoops"),
-    toppings: calculate("toppings"),
+    scoops: calculateTotal("scoops"),
+    toppings: calculateTotal("toppings"),
   };
 
-  const value = { optionCounts, totals, updateOptionCounts, resetOrder };
-
-  return <OrderDetails value={value} {...props} />;
+  const value = { optionCounts, totals, updateItemCount, resetOrder };
+  return <OrderDetails.provider value={value} />;
 }
